@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>joeykblack</title>
+	<link rel="stylesheet" type="text/css" href="/css/jkb.css" />
+	<script src="/js/gameoflife.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+<p align="left">
+	<img src="../images/banner.png" alt="joeykblack" />
+</p>
+
+<div class="body">
+<a href="/research">back to index</a>
+
+<h1>Conway's Game of Life</h1>
+
+<p>
+Click on the canvas to add some cells and then hit Start to see what happens.
+</p>
+
+<p>
+<button onclick="startSym()">Start</button>
+<button onclick="stopSym()">Stop</button>
+<button onclick="clearGame()">Clear</button>
+</p>
+
+<p>
+<canvas id="gol" title="Game of Life">
+You seem to be running some sort of barbaric browser
+ that is not capable of rendering anything. 
+ Please join modern society with a real browser like 
+ <a href=http://www.mozilla.com/en-US/firefox/upgrade.html>Firefox</a> 
+ or <a href=http://www.google.com/chrome>Chrome</a>. Thank you.
+</canvas>
+</p>
+
+
+</div>
+
+<script>getWorld()</script>
+
+</body>
+</html>

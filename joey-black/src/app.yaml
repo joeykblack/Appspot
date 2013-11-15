@@ -1,0 +1,50 @@
+application: joey-black
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+
+
+  
+- url: /css
+  static_dir: css
+  
+- url: /js
+  static_dir: js
+  
+- url: /favicon.ico
+  static_files: images/favicon.ico
+  upload: images/favicon.ico
+  
+- url: /images
+  static_dir: images
+
+- url: /post
+  script: Application.py
+  login: admin
+  
+- url: /admin
+  script: Application.py
+  login: admin
+  
+- url: /postit
+  script: Application.py
+  login: required
+  
+- url: /web
+  static_dir: web
+  
+- url: /pdf
+  static_dir: pdf
+  
+- url: /zip
+  static_dir: zip
+  
+- url: /test.*
+  script: gaeunit.py
+  
+- url: /.*
+  script: Application.py
+
+  

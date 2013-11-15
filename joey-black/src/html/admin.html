@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>joeykblack</title>
+	{{css}}
+</head>
+
+<body>
+
+{{banner}}
+{{menu}}
+{{loginout}}
+
+<div class="body">
+
+<h1>Admin Actions</h1>
+
+<ul>
+	<li>
+		<a href="/admin?action=dropdb">Clear DB</a>
+	</li>
+</ul>
+
+<h2>Users</h2>
+<ul>
+	<form action="/admin?action=edituser" method="post">
+	{% for luser in lusers %}
+		<li>
+			{{luser.user.nickname}}:<br/ >
+			votes: <input type="text" name="votes" value="{{luser.votes}}" />
+		</li>
+	{% endfor %}
+	<input type="Submit" value="Submit" />
+	</form>
+</ul>
+
+</div>
+
+</body>
+</html>

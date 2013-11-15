@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>joeykblack</title>
+	<link rel="stylesheet" type="text/css" href="/css/jkb.css" />
+</head>
+
+<body>
+
+<p align="left">
+	<img src="../images/banner.png" alt="joeykblack" />
+</p>
+
+<div class="body">
+<a href="/research">back to index</a>
+
+<h1>Go</h1>
+
+<p>
+	Go is an ancient Chinese board game. The skill required to play is comparable to the skill 
+	required to play Chess. For computers however, the challenge of Go is much greater than that 
+	of Chess. In this project I am exploring various algorithms and data structures that are used
+	for computer Go. I have also begun implementing these algorithms in a few different languages.
+</p>
+
+<h3>Implementations</h3>
+
+<ol>
+<li>Java - My initial Java implementation is described in the paper below. 
+ It uses Monte Carlo UCT and bitboards.</li><br />
+<li>C++ - For a variety of reasons, I decided to rewrite my Java Go engine in C++.
+ I believe this may prove to have some advantages in the area the bitboard operations.
+ More detailed results should be forthcoming.</li><br />
+<li>Lisp - Ah Lisp, how I have come to love you. I was looking for a good starter project
+ to help me learn Lisp and a Go engine seemed to be an obvious choice. The main difference
+ between this implementation and the previous two is the use of the disjoint-set data
+ structure in place of the bitboard. I felt that this would be a more appropriate model
+ for Lisp. Initial tests indicate that this implementation is about 20% slower than
+ the one in C++.</li>
+</ol>
+
+<h3>Paper</h3>
+<p>
+	<a href="/pdf/ComputerGo.pdf">A rough overview of a simple Go implementation (pdf)</a>
+</p>
+
+
+
+</div>
+
+</body>
+</html>

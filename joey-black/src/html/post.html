@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>joeykblack</title>
+	{{css}}
+</head>
+
+<body>
+
+{{banner}}
+{{menu}}
+{{loginout}}
+
+<div class="body">
+
+
+
+
+
+	{% if posted %}
+		<p>
+			Entry Saved
+		</p>
+	{% endif %}
+
+	<p>
+	Add Entry<br />
+		<form action="/post" enctype="multipart/form-data" method="post">
+			{{ entryform.as_p }}
+			<p>Tag: <input type="text" name="tags" value="{{tags}}" /></p>
+			<p>
+				Image: <input type="file" name="img" /> Add (img) to the text to insert
+			</p>
+			<p>Post under different name: <input type="text" name="alias" /></p>
+			<input type="hidden" name="editkey" value="{{editkey}}" />
+			<div><input type="submit" value="Save Entry"></div>
+		</form>
+	</p>
+
+</div>
+
+</body>
+</html>

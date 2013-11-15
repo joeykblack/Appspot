@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>joeykblack</title>
+	{{css}}
+</head>
+
+<body>
+
+{{banner}}
+{{menu}}
+{{loginout}}
+
+<div class="body">
+
+	<p><big><b>Post-its:</b></big> post what <i>you</i> want</p>
+
+	{{filters}}
+	
+	{% if entries %}
+	
+		{% for entry in entries %}
+			<h2>{{entry.title}}</h2>
+			<h5>posted by {{entry.by}} on {{entry.posted}}<br />
+				rating: {{entry.votes}}</h5>
+			<p>{{entry.text}}</p>
+			<p><a href="/comment?topkey={{entry.key}}">Comments</a></p>
+			{% ifequal currentuser entry.by %}
+				<p>
+					<a href="/postit?editkey={{entry.key}}#edit">Edit</a> | <a href="/postit?deletekey={{entry.key}}">Delete</a>
+				</p>
+			{% endifequal %}
+			{% ifequal currentuser "JoeyKBlack" %}
+				<p>
+					<a href="/postit?deletekey={{entry.key}}">Admin Delete</a>
+				</p>
+			{% endifequal %}
+			<p>Vote: 
+				<a href="/postit?vote=up&votekey={{entry.key}}">Up</a> | 
+				<a href="/postit?vote=down&votekey={{entry.key}}">Down</a>
+			</p>
+			<hr />
+		{% endfor %}
+	
+	{% endif %}
+
+
+	{% if posted %}
+		<p>
+			Post Saved
+		</p>
+	{% endif %}
+
+	<p>
+	<a name="edit"></a>
+	Add Post<br />
+		<form action="/postit" enctype="multipart/form-data" method="post">
+			{{ entryform.as_p }}
+			<p>Tag: <input type="text" name="tags" value="{{tags}}" /></p>
+			<p>
+				Image: <input type="file" name="img" /> Add (img) to the text to insert
+			</p>
+			<input type="hidden" name="editkey" value="{{editkey}}" />
+			<div><input type="submit" value="Save Comment"></div>
+		</form>
+	</p>
+
+
+</div>
+
+</body>
+</html>

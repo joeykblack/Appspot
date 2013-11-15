@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>joeykblack</title>
+	{{css}}
+</head>
+
+<body>
+
+{{banner}}
+{{menu}}
+{{loginout}}
+
+<div class="body">
+
+
+	{% if deleted %}
+		<p>Comment Deleted</p>
+	{% endif %}
+	
+	<p>
+		{{up}}
+	</p>
+
+	<ul>
+		{{comments}}
+	</ul>
+
+
+
+	{% if posted %}
+		<p>
+			Comment Saved
+		</p>
+	{% endif %}
+
+	<p>
+	Add Comment<br />
+		<form action="/comment" enctype="multipart/form-data" method="post">
+			{{ entryform.as_p }}
+			<p>
+				Image: <input type="file" name="img" /> Add (img) to the text to insert
+			</p>
+			<input type="hidden" name="editkey" value="{{editkey}}" />
+			<input type="hidden" name="topkey" value="{{topkey}}" />
+			<div><input type="submit" value="Save Comment"></div>
+		</form>
+	</p>
+
+</div>
+
+</body>
+</html>

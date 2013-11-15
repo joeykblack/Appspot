@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>joeykblack</title>
+	{{css}}
+	<script src="/js/comic.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+{{banner}}
+{{menu}}
+{{loginout}}
+
+<div class="body">
+
+<p><b>About:</b> This is a comic strip I put together while learning html5.
+ This is intended to be more of a learning experience in html5, so don't expect
+ it to always be funny or even make sense.</p>
+
+<p>{{comicnav}}</p>
+
+<h2>{{comic.name}}</h2>
+
+<p>
+<canvas id="comic" title="{{comic.tip}}">
+You seem to be running some sort of barbaric browser
+ that is not capable of rendering my awesome comic. 
+ Please join modern society with a real browser like 
+ <a href=http://www.mozilla.com/en-US/firefox/upgrade.html>Firefox</a> 
+ or <a href=http://www.google.com/chrome>Chrome</a>. Thank you.
+</canvas>
+</p>
+
+<p>
+{{comic.text}}
+<p>
+
+
+
+ 
+<p><b>Navigation:</b><br />
+First/Last: first (oldest) or last (newest) comic<br />
+Last/Next: last or next comic<br />
+Left/Right: skip left or right 3 frames<br />
+Left frame/Right frame: move 1 frame left or right<br />
+Up/Down: move right frame up or down one. Can be used to see alternate frames (if any)<br />
+</p>
+
+<div{% if not isadmin %} style="visibility:hidden"{% endif %}>
+<table width="100%" border="1" visible=false>
+<colgroup width="60%" />
+<colgroup width="40%" />
+<tr>
+	<td rowspan="3" valign="top">
+		<!--Characters:-->
+	</td>
+	<td>
+		<form action="/comic" enctype="multipart/form-data" method="post">
+			New Frame:<br />
+			{{ frameform.as_p }}
+			<p>
+				Image: <input type="file" name="img" />
+			</p>
+			<input type="hidden" name="comickey" value="{{comic.key}}" />
+      <input type="hidden" name="do" value="addframe" />
+			Right Frame Sequence: <input type="text" id="rframeseq" name="rframeseq" value="{{rframeseq}}" />
+			<div>
+				<input type="submit" value="Add Frame">
+				<button type="button" onclick='deleteFrame()'>Delete</button>
+			</div>
+		</form>
+	</td>
+</tr>
+<tr>
+	<td>
+		<form action="/comic" enctype="multipart/form-data" method="post">
+			Edit Comic:<br />
+      {{ comicform.as_p }}
+			<input type="hidden" name="comickey" value="{{comic.key}}" />
+      <input type="hidden" name="do" value="editcomic" />
+			<div>
+				<input type="submit" value="Edit Comic" />
+        <button type="button" onclick='deleteComic()'>Delete</button>
+			</div>
+		</form>
+	</td>
+</tr>
+<tr>
+  <td>
+    <form action="/comic" enctype="multipart/form-data" method="post">
+      New Comic:<br />
+      {{ comicform.as_p }}
+      <input type="hidden" name="comickey" value="{{comic.key}}" />
+      <input type="hidden" name="do" value="addcomic" />
+      <div>
+        <input type="submit" value="Add Comic" />
+      </div>
+    </form>
+  </td>
+</tr>
+</table>
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<script>getComic('{{comic.key}}', '{{rframeseq}}')</script>
+
+
+</body>
+</html>

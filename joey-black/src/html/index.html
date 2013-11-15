@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>joeykblack</title>
+	{{css}}
+</head>
+
+<body>
+
+{{banner}}
+{{menu}}
+{{loginout}}
+
+<div class="body">
+
+{{filters}}
+
+{% if entries %}
+
+	{% for entry in entries %}
+		<h2>{{entry.title}}</h2>
+		<h5>posted by {{entry.by}} on {{entry.posted}}</h5>
+		<p>{{entry.text}}</p>
+		<p><a href="/comment?topkey={{entry.key}}">Comments</a></p>
+		{% if ispost %}
+			<p>
+				<a href="/edit?editkey={{entry.key}}">Edit</a> | <a href="/delete?key={{entry.key}}">Delete</a>
+			</p>
+		{% endif %}
+		<hr />
+	{% endfor %}
+
+{% endif %}
+
+</div>
+
+</body>
+</html>
