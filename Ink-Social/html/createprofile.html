@@ -1,0 +1,22 @@
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+	<h2>Create Profile</h2>
+	{% if user %}
+		<p>Hello {{user.nickname}}! You will use your Google account to login to our site.</p> 
+	{% else %}
+		<p>Please <a href="{{login_link}}">login</a> with a Google profile.</p>
+	{% endif %}
+	<form class='well' action='/createprofile' method="post">
+		<label>Display name:</label>
+		<input name="displayname" type="text" class="span3" 
+			{% if user %}value="{{user.nickname}}"
+			{%else%}placeholder="Display name"{%endif%} />
+		<label>Brand name:</label>
+		<input name="brandname" type="text" class="span3" 
+			placeholder="Brand name"/>
+		<button type="submit" class="btn">Create Profile</button>
+	</form>
+</div>
+</div>
+</div>

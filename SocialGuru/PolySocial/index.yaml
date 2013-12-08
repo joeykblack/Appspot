@@ -1,0 +1,14 @@
+indexes:
+
+- kind: Media
+  properties:
+  - name: categories
+  - name: class
+  - name: timestamp
+    direction: desc
+
+- kind: Media
+  properties:
+  - name: class
+  - name: timestamp
+    direction: desc

@@ -1,0 +1,32 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://blueimp.github.com/cdn/js/bootstrap.min.js"></script>
+<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
+<script src="js/bootstrap-image-gallery.min.js"></script>
+
+<div class="container">
+<div class="row">
+<div class="span12">
+	
+	<h3>Top Articles</h3>
+	<ul class="thumbnails">
+		{% if stories %}
+			{% for story in stories %}
+				<div class="row-fluid">
+					<li class="span12" style="padding-bottom: 10px;">
+						<div class="thumbnail">
+							<h2><a href="/details?key={{story.key}}">{{story.title}}</a></h2>
+							<p>{{story.text}}</p>
+							<!-- <g:plusone size="small" href="{{story.link}}"></g:plusone>
+							<a href="https://twitter.com/share" class="twitter-share-button" data-url="{{story.link}}">Tweet</a>
+							<div class="fb-like" data-href="{{story.link}}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div> -->
+						</div>
+					</li>
+				</div>
+			{% endfor %}
+		{% endif %}
+	</ul>
+	
+</div>
+</div>
+</div>
+

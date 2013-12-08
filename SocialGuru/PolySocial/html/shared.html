@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+	<title>Poly-Social</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="/css/bootstrap-responsive.css"> -->
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="http://blueimp.github.com/cdn/js/bootstrap.min.js"></script>
+	
+	<!-- <link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap.min.css">
+	[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif] -->
+	
+	<link rel="stylesheet" href="/css/bootstrap-image-gallery.min.css">
+	<!-- Place this render call where appropriate -->
+	<script type="text/javascript">
+	  (function() {
+	    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	    po.src = 'https://apis.google.com/js/plusone.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	  })();
+	</script>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	
+	<style>
+		body{background-color:#F0F0F5;}
+		html { background: transparent }
+		.thumbnail {background-color:#f0e0e0;}
+		li.mycomment {padding-bottom: 10px;}
+		li.mycomment1 {padding-bottom: 5px; border-top-style:outset;  border-left-style:outset; border-width:1px; border-color:#98bf21;}
+		h3.mycomment {border-bottom-style:solid; border-color:#FDFDFF; border-width:1px;}
+		p.mycomment {padding-left:10px;padding-top:5px;}
+	</style>
+</head>
+
+<body data-spy="scroll" data-target=".subnav" data-offset="50" style="padding-top:40px;">
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container-fluid">
+			<a class="brand" href="#">Poly-Social</a>
+			<ul class="nav">
+				<li><a href="/"><i class="icon-home icon-white"></i> Home</a></li>
+				<li><a href="/article"><i class="icon-book icon-white"></i> Articles</a></li>
+				<li><a href="/video"><i class="icon-eye-open icon-white"></i> Videos</a></li>
+				<li><a href="/about"><i class="icon-glass icon-white"></i> About</a></li>
+			</ul>
+			<ul class="nav pull-right">
+				<li>
+					<a href="{{login_link}}">
+						<i class="icon-user icon-white"> </i>
+						{{login_text}}
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+{{content}}
+
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+cron:
+
+- description: Story updater
+  url: /update/stories
+  schedule: every 1 hours
+  
+- description: Tweeter
+  url: /update/tweet
+  schedule: every 4 hours
+  
+- description: Purge
+  url: /update/purge
+  schedule: every monday 01:00

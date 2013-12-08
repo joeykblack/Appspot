@@ -1,0 +1,44 @@
+application: ink-social
+version: 1
+runtime: python
+api_version: 1
+
+inbound_services:
+- mail
+
+handlers:
+  
+- url: /css
+  static_dir: css
+  
+- url: /js
+  static_dir: js
+  
+- url: /favicon.ico
+  static_files: images/favicon.ico
+  upload: images/favicon.ico
+  
+- url: /sitemap.xml
+  static_files: web/sitemap.xml
+  upload: web/sitemap.xml
+  
+- url: /images
+  static_dir: images
+- url: /img
+  static_dir: images
+  
+- url: /admin
+  script: Application.py
+  login: admin
+  
+- url: /web
+  static_dir: web
+  
+- url: /_ah/mail/.+ 
+  script: handle_incoming_email.py 
+  login: admin
+  
+- url: /.*
+  script: Application.py
+
+  

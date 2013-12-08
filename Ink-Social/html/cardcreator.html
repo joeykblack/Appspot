@@ -1,0 +1,85 @@
+{% if not person %}
+	<script type="text/javascript">
+	<!--
+	window.location = "/createprofile"
+	//-->
+	</script>
+{% endif %}
+
+<style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+      canvas {
+        border: 1px solid #9C9898;
+      }
+</style>
+
+<script src="/js/jscolor.js" type="text/javascript"></script>
+<!-- <script src="/js/knockout-2.1.0.js" type="text/javascript"></script> -->
+<!-- <script src="/js/fonts.js" type="text/javascript"></script> -->
+<script src="http://www.html5canvastutorials.com/libraries/kinetic-v3.9.6.js"></script>
+
+
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+	
+	<div class="row-fluid">
+	
+		<div class="span4">
+			<form class='well form-inline'>
+				<input name="clipartsearch" id="clipartsearch" type="text" />
+				<input class="btn" type="button" id="savecard" onclick="searchClipart()" value="Search Clipart" />
+			</form>
+			<div id="clipart"></div>
+		</div>
+		
+		
+		<div class="span4">
+			<ul class="nav nav-pills">
+			  <li><a href="#" onclick="showFront()">Front</a></li>
+			  <li><a href="#" onclick="showInsideLeft()">Inside Left</a></li>
+			  <li><a href="#" onclick="showInsideRight()">Inside Right</a></li>
+			  <li><a href="#" onclick="showBack()">Back</a></li>
+			</ul>
+			<div id="card"></div>
+			<form class='well form-inline'>
+				<label>Name</label>
+				<input name="cardname" id="cardname" type="text" />
+				<input class="btn" type="button" id="savecard" onclick="saveCard()" value="Save" />
+			</form>
+		</div>
+		
+		
+		<div class="span4">
+			<form class='well'>
+				<p>
+					<label>Background Color:</label>
+					<input id="backgroundcolor" class="color" value="FFFFFF" onchange="backgroundColorChanged()">
+				</p>
+				<p>				
+					<label>Add Text:</label>
+					<label>Text</label>
+					<textarea class="input-xlarge" name="newtext" id="newtext"  rows="3" onchange="ontextChange()"></textarea>
+					<label>Text Color</label>
+					<input id="textcolor" class="color" value="000000" onchange="textColorChanged()" />
+					<label>Text Font</label>
+					<div id="container"></div>
+					<br />
+					<input class="btn" type="button" id="newtext" onclick="clearSelected()" value="New Text" />
+					<input class="btn" type="button" id="addtext" onclick="addText()" value="Add Text" />
+					<input class="btn" type="button" id="addtext" onclick="deleteSelected()" value="Delete Selected" />
+				</p>
+			</form>
+		</div>
+		
+	</div>
+	
+</div>
+</div>
+</div>
+
+<script src="/js/cardcreator.js" type="text/javascript"></script>
+<script src="/js/clipart.js" type="text/javascript"></script>

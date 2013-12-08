@@ -1,0 +1,105 @@
+
+<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
+<script src="js/bootstrap-image-gallery.min.js"></script>
+
+
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+
+	<div class="row-fluid">
+		<div class="hero-unit" style="background-color:#C0F0C0;">
+			<h1>Welcome to Poly-Social</h1>
+			<p>
+				This site is a one-stop quick-guide to what's hot <i>right now</i>. 
+				When you need to know the latest trends, the hottest news and the most
+				viral videos without spending hours browsing the net, then this site is 
+				for you.
+			</p>
+		</div>
+	</div>
+	
+	
+	<div class="row-fluid">
+		
+		{% if videos %}
+			<div class="span2">
+				<h4>Popular Videos</h4>
+				<ul class="thumbnails">
+					{% for video in videos %}
+						<div class="row-fluid">
+							<li class="span12"  style="padding-bottom: 10px;">
+								<div class="thumbnail">
+									<a href="/details?key={{video.key}}">
+										<img src="{{video.img}}" class="span12"/>
+										<h5>{{video.title}}</h5>
+									</a>
+								</div>
+							</li>
+						</div>
+					{% endfor %}
+				</ul>
+			</div>
+		{% endif %}
+	
+		<!-- <div class="span2">
+			<h4>Merch</h4>
+		</div> -->
+	
+		<div class="span8">
+			<h4>Top Articles</h4>
+			<ul class="thumbnails">
+				{% if stories %}
+					{% for story in stories %}
+						<div class="row-fluid">
+							<li class="span12"  style="padding-bottom: 10px;">
+								<div class="thumbnail">
+									<h2><a href="/details?key={{story.key}}">{{story.title}}</a></h2>
+									<p>{{story.text}}</p>
+									<!-- <g:plusone size="small" href="{{story.link}}"></g:plusone>
+									<a href="https://twitter.com/share" class="twitter-share-button" data-url="{{story.link}}">Tweet</a>
+									<div class="fb-like" data-href="{{story.link}}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div> -->
+								</div>
+							</li>
+						</div>
+					{% endfor %}
+				{% endif %}
+			</ul>
+		</div>
+		
+		<div class="span2">
+			<h4>Cool Pics</h4>
+			<div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery"></div>
+		</div>
+		
+	</div>
+	
+</div>
+</div>
+</div>
+
+<script>
+//Load images via flickr for demonstration purposes:
+$.ajax({
+    url: 'http://api.flickr.com/services/rest/',
+    data: {
+        format: 'json',
+        method: 'flickr.interestingness.getList',
+        api_key: '4a5b877e578268b3894dac25713a7c54'
+    },
+    dataType: 'jsonp',
+    jsonp: 'jsoncallback'
+}).done(function (data) {
+    var gallery = $('#gallery'),
+        url;
+    $.each(data.photos.photo, function (index, photo) {
+        url = 'http://farm' + photo.farm + '.static.flickr.com/' +
+            photo.server + '/' + photo.id + '_' + photo.secret;
+        $('<a rel="gallery"/>')
+            .append($('<img>').prop('src', url + '_s.jpg'))
+            .prop('href', url + '_b.jpg')
+            .prop('title', photo.title)
+            .appendTo(gallery);
+    });
+});
+</script>

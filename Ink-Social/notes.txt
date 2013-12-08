@@ -1,0 +1,4 @@
+Card creator features:
+	Change background color: done
+	Add text with different fonts/colors
+	Upload/add images

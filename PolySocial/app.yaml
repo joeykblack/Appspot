@@ -1,0 +1,51 @@
+application: poly-social
+version: 1
+runtime: python
+api_version: 1
+
+inbound_services:
+- mail
+
+handlers:
+  
+- url: /css
+  static_dir: css
+  
+- url: /js
+  static_dir: js
+  
+- url: /favicon.ico
+  static_files: images/favicon.ico
+  upload: images/favicon.ico
+  
+- url: /sitemap.xml
+  static_files: web/sitemap.xml
+  upload: web/sitemap.xml
+- url: /google96f108ede8a64e5a.html
+  static_files: web/google96f108ede8a64e5a.html
+  upload: web/google96f108ede8a64e5a.html
+  
+- url: /images
+  static_dir: images
+- url: /img
+  static_dir: images
+  
+- url: /admin
+  script: Application.py
+  login: admin
+  
+- url: /web
+  static_dir: web
+  
+- url: /update/.*
+  script: Crons.py
+  login: admin
+  
+- url: /_ah/mail/.+ 
+  script: handle_incoming_email.py 
+  login: admin
+  
+- url: /.*
+  script: Application.py
+
+  

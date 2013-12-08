@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+	<title>Ink-Social</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="/css/bootstrap-responsive.css"> -->
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="http://blueimp.github.com/cdn/js/bootstrap.min.js"></script>
+	
+	<!-- <link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap.min.css">
+	[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif] -->
+	
+	<link rel="stylesheet" href="/css/bootstrap-image-gallery.min.css">
+	
+	<style>
+		body{background-color:#F0F0F5;}
+		html { background: transparent }
+		.thumbnail {background-color:#f0e0e0;}
+		li.mycomment {padding-bottom: 10px;}
+		li.mycomment1 {padding-bottom: 5px; border-top-style:outset;  border-left-style:outset; border-width:1px; border-color:#98bf21;}
+		h3.mycomment {border-bottom-style:solid; border-color:#FDFDFF; border-width:1px;}
+		p.mycomment {padding-left:10px;padding-top:5px;}
+	</style>
+</head>
+
+<body data-spy="scroll" data-target=".subnav" data-offset="50" style="padding-top:40px;">
+
+
+
+
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container-fluid">
+			<a class="brand" href="#">Ink-Social</a>
+			<ul class="nav">
+				<li><a href="/"><i class="icon-home icon-white"></i> Home</a></li>
+				<li><a href="/browse"><i class="icon-eye-open icon-white"></i> Browse</a></li>
+				<li><a href="/about"><i class="icon-glass icon-white"></i> About</a></li>
+			</ul>
+			<ul class="nav pull-right">
+				{% if person %}
+					<li>
+						<a href="/cardcreator">
+							<i class="icon-plus icon-white"> </i>
+							Create
+						</a>
+					</li>
+					<li>
+						<a href="/collection?pkey={{person.key}}">
+							<i class="icon-briefcase icon-white"> </i>
+							{{person.brandname}} Creations
+						</a>
+					</li>
+					<li>
+						<a href="/profile">
+							<i class="icon-leaf icon-white"> </i>
+							Profile
+						</a>
+					</li>
+				{% else %}
+					<li>
+						<a href="/createprofile">
+							<i class="icon-leaf icon-white"> </i>
+							Create Profile
+						</a>
+					</li>
+				{% endif %}
+				<li>
+					<a href="{{login_link}}">
+						<i class="icon-user icon-white"> </i>
+						{{login_text}}
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+{{content}}
+
+</body>
+
+</html>

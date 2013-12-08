@@ -1,0 +1,141 @@
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+	
+	<div class="hero-unit"  style="background-color:#C0F0C0;">
+		<h2>{{media.title}}</h2>
+		{% if media.img %}
+			<a href="{{media.link}}"><img src="{{media.img}}" /></a>
+		{% endif %}
+		<p>{{media.text}}</p>
+		<g:plusone size="small" href="{{media.link}}" class="plusone"></g:plusone>
+		<br />
+		<a href="https://twitter.com/share" class="twitter-share-button tweet" data-url="{{media.link}}">Tweet</a>
+		<br />
+		<div class="fb-like" data-href="{{media.link}}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" class="like"></div>
+		<br />
+		<a href="{{media.link}}" class="btn">Check it out &raquo;</a>
+	</div>
+	
+	<div class="row-fluid">
+		
+		<ul class="thumbnails span12">
+			{% if media.comments %}
+				{% for comment in media.comments %}
+					<div class="modal hide fade" id="commentModal{{comment.key}}">
+						<div class="modal-header">
+							<button class="close" data-dismiss="modal">×</button>
+							<h3>Comment</h3>
+						</div>
+						<form action="/details" enctype="multipart/form-data" method="post">
+							<div class="modal-body">
+							  	<input type="hidden" name="key" value="{{media.key}}" />
+							  	<input type="hidden" name="commentkey" value="{{comment.key}}" />
+								<input type="text" class="span6" name="title" placeholder="Title" />
+								<textarea class="input-xlarge span12" name="text" rows="5" placeholder="Comment"></textarea>
+							</div>
+							<div class="modal-footer">
+								<a href="#" class="btn" data-dismiss="modal" >Close</a>
+								<button type="submit" class="btn btn-primary">Post</button>
+							</div>
+						</form>
+					</div>
+					<div class="row-fluid">
+						<li class="span12 mycomment">
+							<div class="thumbnail">
+								<h3 class="mycomment">{{comment.title}}</h3>
+								<h5>posted by {{comment.by}} on {{comment.timestamp}}</h5>
+								<p class="mycomment">{{comment.text}}</p>
+								<p>
+									<a class="btn" data-toggle="modal" href="#commentModal{{comment.key}}" >Comment</a>
+								</p>
+								
+								{% if comment.comments %}
+								<button class="btn" data-toggle="collapse" data-target="#comments{{comment.key}}">+</button>
+								<ul class="thumbnails span12 collapse" id="comments{{comment.key}}">
+										{% for comment1 in comment.comments %}
+											<div class="modal hide fade" id="commentModal{{comment1.key}}">
+												<div class="modal-header">
+													<button class="close" data-dismiss="modal">×</button>
+													<h3>Comment</h3>
+												</div>
+												<form action="/details" enctype="multipart/form-data" method="post">
+													<div class="modal-body">
+													  	<input type="hidden" name="key" value="{{media.key}}" />
+													  	<input type="hidden" name="commentkey" value="{{comment1.key}}" />
+														<input type="text" class="span6" name="title" placeholder="Title" />
+														<textarea class="input-xlarge span12" name="text" rows="5" placeholder="Comment"></textarea>
+													</div>
+													<div class="modal-footer">
+														<a href="#" class="btn" data-dismiss="modal" >Close</a>
+														<button type="submit" class="btn btn-primary">Post</button>
+													</div>
+												</form>
+											</div>
+											<div class="row-fluid">
+												<li class="span12 mycomment1">
+													<div class="thumbnail">
+														<h3 class="mycomment">{{comment1.title}}</h3>
+														<h5>posted by {{comment1.by}} on {{comment1.timestamp}}</h5>
+														<p class="mycomment">{{comment1.text}}</p>
+														<p><a class="btn" data-toggle="modal" href="#commentModal{{comment1.key}}" >Comment</a></p>
+														
+														<ul class="thumbnails span12">
+															{% if comment1.comments %}
+																{% for comment2 in comment1.comments %}
+																	<div class="row-fluid">
+																		<li class="span12 mycomment1">
+																			<div class="thumbnail">
+																				<h3 class="mycomment">{{comment2.title}}</h3>
+																				<h5>posted by {{comment2.by}} on {{comment2.timestamp}}</h5>
+																				<p class="mycomment">{{comment2.text}}</p>
+																			</div>
+																		</li>
+																	</div>
+																{% endfor %}
+															{% endif %}
+														</ul>
+														
+													</div>
+												</li>
+											</div>
+										{% endfor %}
+								</ul>
+								{% endif %}
+								
+							</div>
+						</li>
+					</div>
+				{% endfor %}
+			{% endif %}
+		</ul>
+		
+		<a class="btn" data-toggle="modal" href="#commentModal" >Comment</a>
+		
+		<div class="modal hide fade" id="commentModal">
+						<div class="modal-header">
+							<button class="close" data-dismiss="modal">×</button>
+							<h3>Comment</h3>
+						</div>
+						<form action="/details" enctype="multipart/form-data" method="post">
+							<div class="modal-body">
+							  	<input type="hidden" name="key" value="{{media.key}}" />
+								<input type="text" class="span6" name="title" placeholder="Title" />
+								<textarea class="input-xlarge span12" name="text" rows="5" placeholder="Comment"></textarea>
+							</div>
+							<div class="modal-footer">
+								<a href="#" class="btn" data-dismiss="modal" >Close</a>
+								<button type="submit" class="btn btn-primary">Post</button>
+							</div>
+						</form>
+					</div>
+		
+		<br /><br /><br /><br /><br /><br />
+		
+	</div>
+	
+	
+	
+</div>
+</div>
+</div>

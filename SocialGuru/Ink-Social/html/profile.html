@@ -1,0 +1,25 @@
+{% if not person %}
+	<script type="text/javascript">
+	<!--
+	window.location = "/createprofile"
+	//-->
+	</script>
+{% endif %}
+
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+	<h2>Profile</h2>
+	<p>Hello {{person.displayname}}!</p> 
+	<form class='well' action='/profile' method="POST">
+		<label>Display name:</label>
+		<input name="displayname" type="text" class="span3" 
+			value="{{person.displayname}}"/>
+		<label>Brand name:</label>
+		<input name="brandname" type="text" class="span3" 
+			value="{{person.brandname}}"/>
+		<button type="submit" class="btn">Save Changes</button>
+	</form>
+</div>
+</div>
+</div>

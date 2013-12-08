@@ -1,0 +1,28 @@
+Pages:
+	Main
+		Welcome at top of list
+		List of top content
+		Filter on left of page
+		Adds on right
+	About
+		About content centered
+		Adds on right
+	Details
+	[Preferences]
+	
+
+Todo:
+Get Twitter Bootstrap
+Setup template
+
+
+Flickr
+Key:
+4a5b877e578268b3894dac25713a7c54
+Secret:
+cd66f5239d7ccade
+
+
+more color
+more labels
+categories

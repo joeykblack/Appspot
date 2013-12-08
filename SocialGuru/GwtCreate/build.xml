@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="GwtCreate" default="create" basedir=".">
+	
+	<property file="gwtCreate.properties" />
+	<property name="project.gwt.base.src" value="${project.path}/src/${project.gwt.package.asfilepath}" />
+	<property name="project.war" value="${project.path}/war" />
+	<property name="template.path" value="template" />
+	
+	
+	<target name="create" depends="clean">
+		<antcall target="createMvp" />
+	</target>
+	
+	<target name="createMvp">
+		<antcall target="packageStruct" />
+		<antcall target="copyTemplate" />
+		<antcall target="renameTemplate" />
+		<antcall target="copyLib" />
+	</target>
+	
+	<target name="packageStruct">
+		<mkdir dir="${project.gwt.base.src}"/>
+		<mkdir dir="${project.gwt.base.src}/client"/>
+		<mkdir dir="${project.gwt.base.src}/client/activity"/>
+		<mkdir dir="${project.gwt.base.src}/client/activity/impl"/>
+		<mkdir dir="${project.gwt.base.src}/client/factory"/>
+		<mkdir dir="${project.gwt.base.src}/client/gin"/>
+		<mkdir dir="${project.gwt.base.src}/client/mvp"/>
+		<mkdir dir="${project.gwt.base.src}/client/place"/>
+		<mkdir dir="${project.gwt.base.src}/client/service"/>
+		<mkdir dir="${project.gwt.base.src}/client/view"/>
+		<mkdir dir="${project.gwt.base.src}/client/view/impl"/>
+		<mkdir dir="${project.gwt.base.src}/server"/>
+		<mkdir dir="${project.gwt.base.src}/shared"/>
+	</target>
+	
+	<target name="copyTemplate">
+		<copy file="${template.path}/Template.gwt.xml" tofile="${project.gwt.base.src}/${project.name}.gwt.xml" />
+		<copy file="${template.path}/Template.java" tofile="${project.gwt.base.src}/client/${project.name}.java" />
+		<copy file="${template.path}/Presenter.java" tofile="${project.gwt.base.src}/client/activity/Presenter.java" />
+		<copy file="${template.path}/TemplateActivity.java" tofile="${project.gwt.base.src}/client/activity/${project.name}Activity.java" />
+		<copy file="${template.path}/TemplateActivityImpl.java" tofile="${project.gwt.base.src}/client/activity/impl/${project.name}ActivityImpl.java" />
+		<copy file="${template.path}/ClientFactory.java" tofile="${project.gwt.base.src}/client/factory/ClientFactory.java" />
+		<copy file="${template.path}/ClientFactoryImpl.java" tofile="${project.gwt.base.src}/client/factory/impl/ClientFactoryImpl.java" />
+		<copy file="${template.path}/TemplateGinjector.java" tofile="${project.gwt.base.src}/client/gin/${project.name}Ginjector.java" />
+		<copy file="${template.path}/TemplateGinModule.java" tofile="${project.gwt.base.src}/client/gin/${project.name}GinModule.java" />
+		<copy file="${template.path}/AppActivityMapper.java" tofile="${project.gwt.base.src}/client/mvp/AppActivityMapper.java" />
+		<copy file="${template.path}/AppPlaceHistoryMapper.java" tofile="${project.gwt.base.src}/client/mvp/AppPlaceHistoryMapper.java" />
+		<copy file="${template.path}/NamedPlace.java" tofile="${project.gwt.base.src}/client/place/NamedPlace.java" />
+		<copy file="${template.path}/TemplatePlace.java" tofile="${project.gwt.base.src}/client/place/${project.name}Place.java" />
+		<copy file="${template.path}/TemplateService.java" tofile="${project.gwt.base.src}/client/service/${project.name}Service.java" />
+		<copy file="${template.path}/TemplateServiceAsync.java" tofile="${project.gwt.base.src}/client/service/${project.name}ServiceAsync.java" />
+		<copy file="${template.path}/TemplateView.java" tofile="${project.gwt.base.src}/client/view/${project.name}View.java" />
+		<copy file="${template.path}/TemplateViewImpl.java" tofile="${project.gwt.base.src}/client/view/impl/${project.name}ViewImpl.java" />
+		<copy file="${template.path}/TemplateViewImpl.ui.xml" tofile="${project.gwt.base.src}/client/view/impl/${project.name}ViewImpl.ui.xml" />
+		<copy file="${template.path}/TemplateServiceImpl.java" tofile="${project.gwt.base.src}/server/${project.name}ServiceImpl.java" />
+		
+		<copy file="${template.path}/Template.html" tofile="${project.path}/war/${project.name}.html" />
+		<copy file="${template.path}/Template.css" tofile="${project.path}/war/${project.name}.css" />
+	</target>
+	
+	
+	<target name="renameTemplate">
+		<replace dir="${project.path}" value="${project.name}" token="Template">
+			<include name="**/**" />
+		</replace>
+		<replace dir="${project.path}" value="${project.name.lowercase}" token="template">
+			<include name="**/**" />
+		</replace>
+		<replace dir="${project.path}" value="${project.gwt.package}" token="project.gwt.package">
+			<include name="**/**" />
+		</replace>
+	</target>
+	
+	
+	<target name="copyLib">
+		<copydir dest="${project.path}/lib" src="lib"></copydir>
+	</target>
+	
+	
+	
+	<target name="clean">
+		<delete dir="${project.gwt.base.src}" />
+		<delete dir="${project.path}/lib" />
+	</target>
+	
+	
+	
+	
+	<target name="addVP">
+		<antcall target="copyVPTemplates" />
+		<antcall target="renameVPTemplate" />
+		<echo></echo>
+		<echo>WARNING! - You must still add your new activity and place to your Activity Mapper,</echo>
+		<echo>           AppPlaceHistoryMapper and ClientFactory</echo>
+	</target>
+	
+	<target name="copyVPTemplates">
+		<copy file="${template.path}/TemplateActivity.java" tofile="${project.gwt.base.src}/client/activity/${addvp.name}Activity.java" />
+		<copy file="${template.path}/TemplateActivityImpl.java" tofile="${project.gwt.base.src}/client/activity/impl/${addvp.name}ActivityImpl.java" />
+
+		<copy file="${template.path}/TemplatePlace.java" tofile="${project.gwt.base.src}/client/place/${addvp.name}Place.java" />
+		
+		<copy file="${template.path}/TemplateView.java" tofile="${project.gwt.base.src}/client/view/${addvp.name}View.java" />
+		<copy file="${template.path}/TemplateViewImpl.java" tofile="${project.gwt.base.src}/client/view/impl/${addvp.name}ViewImpl.java" />
+		<copy file="${template.path}/TemplateViewImpl.ui.xml" tofile="${project.gwt.base.src}/client/view/impl/${addvp.name}ViewImpl.ui.xml" />
+	</target>
+
+	<target name="renameVPTemplate">
+		<replace dir="${project.path}" value="${addvp.name}" token="Template">
+			<include name="**/**" />
+		</replace>
+		<replace dir="${project.path}" value="${addvp.name.lowercase}" token="template">
+			<include name="**/**" />
+		</replace>
+		<replace dir="${project.path}" value="${project.gwt.package}" token="project.gwt.package">
+			<include name="**/**" />
+		</replace>
+	</target>
+	
+</project>
+
+
+
+
+
+
+
+
